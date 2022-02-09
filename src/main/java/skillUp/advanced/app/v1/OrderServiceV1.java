@@ -2,14 +2,26 @@ package skillUp.advanced.app.v1;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import skillUp.advanced.trace.HelloTraceV1.HelloTraceV1;
+import skillUp.advanced.trace.TraceStatus;
 
 @Service
 @RequiredArgsConstructor
 public class OrderServiceV1 {
 
     private final OrderRepositoryV1 orderRepository;
+    private final HelloTraceV1 trace;
 
     public void orderItem(String itemId){
-        orderRepository.save(itemId);
+        TraceStatus status = null;
+        try {
+            status = trace.begin("OrderServiceV1.request()");
+            orderRepository.save(itemId);
+            trace.end(status);
+        } catch (Exception e) {
+            trace.exception(status, e);
+            throw e;
+        }
+
     }
 }
