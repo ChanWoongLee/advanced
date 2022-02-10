@@ -1,14 +1,15 @@
-package skillUp.advanced.app.v1;
+package skillUp.advanced.app.v2;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import skillUp.advanced.trace.HelloTraceV1.HelloTraceV1;
+import skillUp.advanced.trace.HelloTraceV1.HelloTraceV2;
 import skillUp.advanced.trace.TraceStatus;
 
 @Repository
 @RequiredArgsConstructor
-public class OrderRepositoryV1 {
-    private final HelloTraceV1 trace;
+public class OrderRepositoryV2 {
+    private final HelloTraceV2 trace;
 
     public void save(String itemId) {
         TraceStatus status = null;
