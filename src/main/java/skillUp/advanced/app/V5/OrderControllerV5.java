@@ -1,22 +1,21 @@
-package skillUp.advanced.app.v4;
+
+package skillUp.advanced.app.V5;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-import skillUp.advanced.trace.HelloTraceV1.HelloTraceV2;
-import skillUp.advanced.trace.TraceStatus;
+import skillUp.advanced.app.v4.OrderServiceV4;
 import skillUp.advanced.trace.logTrace.LogTrace;
 import skillUp.advanced.trace.template.AbstractTemplate;
 
 @RestController
 @RequiredArgsConstructor
-public class OrderControllerV4 {
+public class OrderControllerV5 {
 
     private final OrderServiceV4 orderService;
     private final LogTrace trace;
 
-    @GetMapping("/v4/request")
+    @GetMapping("/v5/request")
     public String request(String itemId){
         AbstractTemplate<String> abstractTemplate= new AbstractTemplate(trace) {
             @Override
