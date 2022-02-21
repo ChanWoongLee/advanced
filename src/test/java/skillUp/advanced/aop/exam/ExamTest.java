@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import skillUp.advanced.app.exam.ExamService;
+import skillUp.advanced.app.exam.RetryAspect;
 import skillUp.advanced.app.exam.TraceAspect;
 
 @SpringBootTest
-@Import(TraceAspect.class)
+@Import({TraceAspect.class, RetryAspect.class})
 @Slf4j
 public class ExamTest {
     @Autowired

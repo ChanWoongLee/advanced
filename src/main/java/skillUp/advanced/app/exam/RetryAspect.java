@@ -7,11 +7,15 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 
+import java.lang.annotation.Annotation;
+
 @Slf4j
 @Aspect
 public class RetryAspect {
-    @Around("@annotation(skillUp.advanced.app.exam.Trace)")
-    public Object doRetry(ProceedingJoinPoint joinPoint, Retry retry) throws Throwable{
+    @Around("@annotation(skillUp.advanced.app.exam.Retry)")
+    public Object doRetry(ProceedingJoinPoint joinPoint) throws Throwable{
+        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        Retry retry = methodSignature.getMethod().getAnnotation(Retry.class);
         log.info("[retry {} retry = {}]",joinPoint.getSignature(), retry);
         Exception exceptionHolder = null;
 

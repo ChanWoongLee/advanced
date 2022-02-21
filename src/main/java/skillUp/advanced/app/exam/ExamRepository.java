@@ -7,6 +7,7 @@ public class ExamRepository {
     private static int seq = 0;
 
     @Trace
+    @Retry
     public String save(String itemId){
         seq++;
         if(seq % 5 ==0){
